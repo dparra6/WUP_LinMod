@@ -33,19 +33,49 @@ data <- read.csv(file="https://onlinestatbook.com/case_studies_rvls/physical_str
 
 ## Model 1 SIM~ARMS
 
-
-
 ### scatterplot
 
+```{r}
+basicNN <- ggplot(data,aes(y=SIMS, x=ARM))
+```
+
+```{r}
+basicNN + geom_point()
+```
+
+
 ### Numerical results
+
+```{r}
+cor(SIMS~ARM,data=data)
+```
+
 
 
 ### Inferential  (Build model.1)
 
+```{r}
+model.1 <- lm(SIMS~ARM,data=data)
+summary.lm(model.1)
+```
+
+
+
 #### Predict at target point
+
+```{r}
+newdata = data.frame(GRIP= 94, ARM= 88)
+predict(model.1, newdata, interveal = "prediction")
+```
+
 
 
 #### scatterplot with model fit
+
+```{r}
+basicNN +geom_point() + geom_smooth(method=lm)
+```
+
   
 
 ## Model 2 SIM~GRIP
