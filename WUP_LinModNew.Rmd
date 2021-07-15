@@ -44,13 +44,15 @@ basicNN + geom_point()
 ```
 
 
+We can see that the y-axis is SIMS, and the x-axis is ARM. We can also tell fron the map leaning towards the right an dup that this is a positive linear correlation between SIMS & ARM. 
+
 ### Numerical results
 
 ```{r}
 cor(SIMS~ARM,data=data)
 ```
 
-
+The value for SIMS & ARM is 0.68 which can tell us that the graph does lean towards upward right from the chart above. 
 
 ### Inferential  (Build model.1)
 
@@ -59,7 +61,13 @@ model.1 <- lm(SIMS~ARM,data=data)
 summary.lm(model.1)
 ```
 
+We can see that the adjusted R-squared is bigger than the one used for GRIP. 
 
+This also tells us that if we go 1.226 up or down we will have come across the predicted interval. 
+
+We can also tell that we need to use the formula y=mx+b to get the prediction for SIMS, which leads to us having: -4.1 + .05 * ARM. 
+
+We can also see that the freedom is 145 degrees on how many data is displayed in the plot. Which we should see differences between each data just because it changes every time the y-axis changes. 
 
 #### Predict at target point
 
@@ -68,6 +76,7 @@ newdata = data.frame(GRIP= 94, ARM= 88)
 predict(model.1, newdata, interveal = "prediction")
 ```
 
+This is the prediction of the point that we will get when you take away .7 away. 
 
 
 #### scatterplot with model fit
@@ -76,7 +85,13 @@ predict(model.1, newdata, interveal = "prediction")
 basicNN +geom_point() + geom_smooth(method=lm)
 ```
 
-  
+Like explained before the formula we will be using is y=mx+b in order for the SIMS to be explained which would give us the same formula we used before: -4.1 + .05 * ARM
+
+Now to find the value of SIMS we have to follow the same rules of our formula which we start of by finding both intercepts of ARM (0.054563) & SIMS (-4.095160).
+
+We start by multiplying 100 by ARM = 5.45, then following the rules we add the y=axis -4.1 
+
+We then get the y-axis which rounded up is around 1.36. 
 
 ## Model 2 SIM~GRIP
 
@@ -90,6 +105,7 @@ basicNN <- ggplot(data,aes(y=SIMS, x=GRIP))
 basicNN + geom_point()
 ```
 
+We can see from this graph that the points are more together. 
 
 ### Numerical results 
 
@@ -97,6 +113,7 @@ basicNN + geom_point()
 cor(SIMS~GRIP,data=data)
 ```
 
+This correlation is 0.63 which means the higher the correlation the tighter the points will be in the graph.
 
 ### Inferential  (Build model.2)
 
@@ -105,7 +122,9 @@ model.2 <- lm(SIMS~GRIP,data=data)
 summary.lm(model.2)
 ```
 
-  
+We can see and determine that this model is not as good as the model with ARM our model 1, just because the R-squared is 0.4053 where our other model with ARMS had 0.409 a smaller number for a better model. 
+
+We can see this error was reduced by 40%. 
 
 #### predict model.2 at target point
 
@@ -113,6 +132,7 @@ summary.lm(model.2)
 predict(model.2, newdata, interval= "prediction")
 ```
 
+The upper and lower points show where the points are predicted onto our model 2. 
 
 #### now add the model fit to our plot for model.2
   
@@ -120,6 +140,7 @@ predict(model.2, newdata, interval= "prediction")
 basicNN + geom_point() + geom_smooth(method=lm)
 ```
 
+We will still be using the same formula of y=mx+b, 
 
 ## Model 3 SIM~ARM+GRIP
 
