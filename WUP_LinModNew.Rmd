@@ -125,17 +125,45 @@ basicNN + geom_point() + geom_smooth(method=lm)
 
 ### Numerical results (cor)
 
-`
+```{r}
+cor(SIMS~ARM+GRIP,data=data)
+```
+
   
 ### Inferential  (Build 2-dimentional model.3)
 
+```{r}
+model.3 <-lm(SIMS~GRIP+ARM,data=data)
+```
+
+
 #### predict model.3 at target point
   
+```{r}
+predict(model.3, newdata, interval= "prediction")
+```
+
 
 ## Comparing nested models ANOVA Test
 
 ### Model.1 vs Model.3
+
+```{r}
+anova(model.1,model.3)
+```
+
+
 ### Model.2 vs Model.3
 
+```{r}
+anova(model.2,model.3)
+```
+
+
 ## Informally compare Model.1 with model.2
+
+```{r}
+anova(model.1,model.2)
+```
+
 
