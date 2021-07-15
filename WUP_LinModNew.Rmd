@@ -82,17 +82,43 @@ basicNN +geom_point() + geom_smooth(method=lm)
 
 ### Now add in scatterplot
 
+```{r}
+basicNN <- ggplot(data,aes(y=SIMS, x=GRIP))
+```
+
+```{r}
+basicNN + geom_point()
+```
+
 
 ### Numerical results 
 
+```{r}
+cor(SIMS~GRIP,data=data)
+```
+
 
 ### Inferential  (Build model.2)
+
+```{r}
+model.2 <- lm(SIMS~GRIP,data=data)
+summary.lm(model.2)
+```
+
   
 
 #### predict model.2 at target point
 
+```{r}
+predict(model.2, newdata, interval= "prediction")
+```
+
+
 #### now add the model fit to our plot for model.2
   
+```{r}
+basicNN + geom_point() + geom_smooth(method=lm)
+```
 
 
 ## Model 3 SIM~ARM+GRIP
