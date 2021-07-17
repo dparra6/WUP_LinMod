@@ -140,7 +140,7 @@ The upper and lower points show where the points are predicted onto our model 2.
 basicNN + geom_point() + geom_smooth(method=lm)
 ```
 
-We will still be using the same formula of y=mx+b, 
+We will still be using the same formula of y=mx+b, since we are still using the same formula the inputs for this formula will be SIMS = -4.1 + 0.45 *GRIP. 
 
 ## Model 3 SIM~ARM+GRIP
 
@@ -150,6 +150,7 @@ We will still be using the same formula of y=mx+b,
 cor(SIMS~ARM+GRIP,data=data)
 ```
 
+This is higer than the model 1, and 2. This result is 0.73 when the other two were less than, which means this wouldnt be as tight as model 2, but will be a little similar than model 1, just more expanded. 
   
 ### Inferential  (Build 2-dimentional model.3)
 
@@ -164,6 +165,7 @@ model.3 <-lm(SIMS~GRIP+ARM,data=data)
 predict(model.3, newdata, interval= "prediction")
 ```
 
+The upper and lower shows the prediction for the points. 
 
 ## Comparing nested models ANOVA Test
 
@@ -173,6 +175,9 @@ predict(model.3, newdata, interval= "prediction")
 anova(model.1,model.3)
 ```
 
+Comparing to model 1 and model 3 the main thing we want to see is the R-squared number and the difference between the two models. Model 1 is 145 while their R-squared is 217.88. 
+
+Model 3 is 144 which isn't as too low and they share a little bit more similarities, while their R-squared is 188.43. The R-squared is more different than model 1 which in model 1 is more higher than this model. 
 
 ### Model.2 vs Model.3
 
@@ -180,6 +185,9 @@ anova(model.1,model.3)
 anova(model.2,model.3)
 ```
 
+Model 2 is 145, while their R-squared is 243.07 which is higher than the model 3.
+
+Model 3 is 144, and their R-squared in 188.43 the model 3 is way lower than the two other models we have compared so far. 
 
 ## Informally compare Model.1 with model.2
 
@@ -187,4 +195,8 @@ anova(model.2,model.3)
 anova(model.1,model.2)
 ```
 
+Comparing model 1 and model 2 are more similar than comparing them to model 3. 
 
+Model 1 is at 145 while their R-squared is at 217.88
+
+Model 2 is at 145 and R-squared is 243.07. The only true difference is their R-squared, althought these two models have more in common than they had in model 3. Where model 2 is higher than model 1 by -25.189. 
